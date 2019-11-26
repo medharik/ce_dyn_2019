@@ -1,5 +1,5 @@
 <?php 
-$prenom ="SAVIO";
+$prenom ="ALI";
 $age=16;
 if($age>18){
     $maj="Majeur";
@@ -18,6 +18,6 @@ $maj="Mineur";
 <body>
 
 <h2>Bienvenue <?php echo $prenom; ?></h2>
-    <h3>Vous etes <?php echo $maj ;?> </h3>
+    <h3>Vous etes <?= $maj ;?> </h3>
 </body>
 </html>
