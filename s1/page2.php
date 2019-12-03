@@ -5,8 +5,6 @@ $profession="Prof";
 // var_dump($_SERVER);
 //  echo gethostname();
 // var_dump($_ENV);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
