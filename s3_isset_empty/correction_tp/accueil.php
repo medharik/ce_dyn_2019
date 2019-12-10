@@ -4,7 +4,6 @@ if(!isset($_GET['pseudo']))
 header("location:form.php?c=vide");
 else 
 $pseudo=$_GET['pseudo'];
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

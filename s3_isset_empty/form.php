@@ -1,7 +1,8 @@
 <?php 
 $message="";
 $classe="d-none";
-if (isset($_GET['lib']) && $_GET['lib']=="no") {
+
+if(isset($_GET['lib']) && $_GET['lib']=="no") {
     $message="Le champs libelle est requis";
     $classe="d-block";
 }
