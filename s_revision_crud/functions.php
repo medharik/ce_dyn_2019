@@ -28,9 +28,15 @@ mysqli_query($link,$requete) or die("Erreur de suppression ".mysqli_error($link)
 
 //modifier
 
-function update($libelle,$prix,$qtestock,$id){
+function update($libelle,$prix,$qtestock,$chemin,$id){
     $link=connecter_db();
-    $requete=sprintf("update produit set libelle='%s' , prix=%f , qtestock=%f where id=%d",$libelle,$prix,$qtestock,$id) ;
+    if(isset($chemin) && !empty($chemin)){
+        $requete=sprintf("update produit set libelle='%s' , prix=%f , qtestock=%f, chemin='%s' where id=%d",$libelle,$prix,$qtestock,$chemin,$id) ;
+        
+    }else{
+
+        $requete=sprintf("update produit set libelle='%s' , prix=%f , qtestock=%f where id=%d",$libelle,$prix,$qtestock,$id) ;
+    }
     mysqli_query($link,$requete) or die("Erreur de modification du produit $libelle ".mysqli_error($link));
     }
 // lecture  des ressources 
@@ -41,7 +47,6 @@ function all(){
 return $resultat;    
 }
 // consultation d'une ressource par id 
-
 function find($id){
     $link=connecter_db();
     $requete=sprintf("select * from produit where id=%d",$id) ;
@@ -51,6 +56,28 @@ $ligne=mysqli_fetch_assoc($resultat);
 }
 
 
+function uploader($infos){
+define('MAX_SIZE',1000000);
+$autorise=['jpg','jpeg','gif','pdf'];
+$tmp=$infos['tmp_name'];
+$nom_original=$infos['name'];
+$new_nom=  md5(date('Ymdhis')."_".rand(0,99999)).$nom_original;
+// $size=$infos['size'];// en octect
+ $size=filesize($tmp);// en octect
+ $path_info=pathinfo($nom_original);
+ $ext=$path_info['extension'];
+ if($size > MAX_SIZE){
+     die("fichier volumineux ");
+ }
+ if(!in_array($ext,$autorise)){
+ die("type de fichier non autorise");
+ }
+$destination="images/$new_nom";
+move_uploaded_file($tmp,$destination);
+//recuperer les datas
+return $destination;
 
+
+}
 
 

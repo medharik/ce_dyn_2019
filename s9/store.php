@@ -1,4 +1,5 @@
 <?php 
+
 require("fonctions.php");
 $libelle=$_POST['libelle'];
 $prix=$_POST['prix'];

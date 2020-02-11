@@ -13,7 +13,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto shadow p-2">
-        <form action="store.php" method="post">
+        <form action="store.php" method="post"  
+        enctype="multipart/form-data">
 
         <div class="form-group"><label for="libelle">Libelle</label>
         <input required type="text" class="form-control" name="libelle" id="libelle" >
@@ -23,6 +24,9 @@
         </div>
         <div class="form-group"><label for="qtestock">Quantite en stock : </label>
         <input type="number" class="form-control" name="qtestock" id="qtestock">
+        </div>
+        <div class="form-group"><label for="chemin">Image du produit : </label>
+        <input type="file" class="form-control" name="chemin" id="chemin">
         </div>
 <button class="btn btn-primary btn-sm">Ajouter</button>
 

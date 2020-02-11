@@ -1,6 +1,10 @@
 <?php 
 require("functions.php");
 $resultat=all();
+$notice="";
+if(isset($_GET['op'])){
+   $notice="Operation effectuee avec succes";
+}
 
 ?>
 <!DOCTYPE html>
@@ -14,11 +18,17 @@ $resultat=all();
 </head>
 <body>
 <?php include("menu.php");?>
+<?php  if(!empty($notice)) {?>
+<div class="alert alert-info">
+<?=$notice;?>
+</div>
+<?php } ?>
 <div class="container">
     <table class="table table-striped">
         <thead>
         <tr>
         <th>id</th>
+        <th>Image</th>
         <th>Libelle</th>
         <th>qte en stock</th>
         <th>prix</th>
@@ -31,11 +41,12 @@ $resultat=all();
 <?php while($ligne=mysqli_fetch_assoc($resultat)) {?>
         <tr>
        <td><?=$ligne['id']?></td>
+       <td><img src="<?=$ligne['chemin']?>" width="150"></td>
        <td><?=$ligne['libelle']?></td>
        <td><?=$ligne['prix']?></td>
        <td><?=$ligne['qtestock']?></td>
        <td><a onclick="return confirm('supprimer?')" href="delete.php?id=<?=$ligne['id']?>" class="btn btn-danger btn-sm">supprimer</a>
-       <a href="" class="btn btn-warning btn-sm">modifier</a>
+       <a href="edit.php?id=<?=$ligne['id']?>" class="btn btn-warning btn-sm">modifier</a>
        <a href="show.php?id=<?=$ligne['id']?>" class="btn btn-info btn-sm">consulter</a></td>
         </tr>
 <?php } ?>
