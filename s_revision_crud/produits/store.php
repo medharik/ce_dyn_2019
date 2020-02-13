@@ -2,7 +2,7 @@
 //var_dump($_FILES['chemin']);
 
 require ("functions.php");
-$destination=uploader($_FIILES['chemin']);
+$destination=uploader($_FILES['chemin']);
 extract($_POST);//$libelle,$prix
 // $libelle=$_POST['libelle'];
 // $prix=$_POST['prix'];

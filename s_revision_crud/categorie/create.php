@@ -1,3 +1,4 @@
+<?php include("../config.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-<?php include("menu.php");?>
+<?php include(URL."menu.php");?>
 
 <div class="container">
     <div class="row">
@@ -16,16 +17,11 @@
         <form action="store.php" method="post"  
         enctype="multipart/form-data">
 
-        <div class="form-group"><label for="libelle">Libelle</label>
-        <input required type="text" class="form-control" name="libelle" id="libelle" >
+        <div class="form-group"><label for="nom">nom</label>
+        <input required type="text" class="form-control" name="nom" id="nom" >
         </div>
-        <div class="form-group"><label for="prix">Prix</label>
-        <input type="number" class="form-control" name="prix" id="prix">
-        </div>
-        <div class="form-group"><label for="qtestock">Quantite en stock : </label>
-        <input type="number" class="form-control" name="qtestock" id="qtestock">
-        </div>
-        <div class="form-group"><label for="chemin">Image du produit : </label>
+       
+        <div class="form-group"><label for="chemin">Image de la Categorie : </label>
         <input type="file" class="form-control" name="chemin" id="chemin">
         </div>
 <button class="btn btn-primary btn-sm">Ajouter</button>
