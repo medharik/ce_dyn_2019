@@ -16,6 +16,7 @@ extract($ligne);
     
 </head>
 <body>
+
 <?php include("menu.php");?>
 
 <div class="card" style="width: 18rem;">

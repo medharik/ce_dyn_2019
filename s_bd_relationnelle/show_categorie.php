@@ -1,7 +1,7 @@
 <?php 
 require("functions.php");
 $id=$_GET['id'];
-$ligne=find($id);
+$ligne=find($id,"categorie");
 extract($ligne);
 ?>
 <!DOCTYPE html>
@@ -16,13 +16,13 @@ extract($ligne);
     
 </head>
 <body>
+<?php include("menu.php");?>
 
 <div class="card" style="width: 18rem;">
-  <img src="http://placehold.it/300x300" class="card-img-top" alt="...">
+  <img src="<?=$chemin?>" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title"><?=$libelle?></h5>
-    <p class="card-text">Prix : <?=$prix?> DHS </p>
-    <p class="card-text"><?=$qtestock?></p>
+    <h5 class="card-title"><?=$nom?></h5>
+ 
     <a href="index.php" class="btn btn-primary">Retour</a>
   </div>
 </div>

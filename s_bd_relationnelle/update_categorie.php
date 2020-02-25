@@ -9,7 +9,7 @@ if(isset($_FILES['chemin']) && !empty($_FILES['chemin']['name'])){
     $destination=uploader($_FILES['chemin']);
 }
 
-update($libelle,$prix,$qtestock,$destination,$id);
+update_categorie($nom,$destination,$id);
 
 header("location:index.php?op=ok");
 

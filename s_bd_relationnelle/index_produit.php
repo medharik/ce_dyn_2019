@@ -1,5 +1,7 @@
 <?php 
 require("functions.php");
+session_start();
+checker($_SESSION['email'],$_SESSION['passe']);
 $resultat=all();
 $notice="";
 if(isset($_GET['op'])){
@@ -17,6 +19,8 @@ if(isset($_GET['op'])){
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+<?php include("menu.php");?>
+
 <?php  if(!empty($notice)) {?>
 <div class="alert alert-info">
 <?=$notice;?>
@@ -52,9 +56,9 @@ if(isset($_GET['op'])){
        <?=$categorie['nom'];?>
        
        </td>
-       <td><a onclick="return confirm('supprimer?')" href="delete.php?id=<?=$ligne['id']?>" class="btn btn-danger btn-sm">supprimer</a>
-       <a href="edit.php?id=<?=$ligne['id']?>" class="btn btn-warning btn-sm">modifier</a>
-       <a href="show.php?id=<?=$ligne['id']?>" class="btn btn-info btn-sm">consulter</a></td>
+       <td><a onclick="return confirm('supprimer?')" href="delete_produit.php?id=<?=$ligne['id']?>" class="btn btn-danger btn-sm">supprimer</a>
+       <a href="edit_produit.php?id=<?=$ligne['id']?>" class="btn btn-warning btn-sm">modifier</a>
+       <a href="show_produit.php?id=<?=$ligne['id']?>" class="btn btn-info btn-sm">consulter</a></td>
         </tr>
 <?php } ?>
 

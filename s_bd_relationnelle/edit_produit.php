@@ -13,6 +13,7 @@ $produit=find($id);
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+<?php include("menu.php");?>
 
 <div class="container">
     <div class="row">
@@ -30,6 +31,24 @@ $produit=find($id);
         </div>
         <div class="form-group"><label for="chemin">Changer l'image du produit : </label>
         <input type="file" class="form-control" name="chemin" id="chemin">
+        </div>
+        <div class="form-group"><label for="chemin">Categorie  : </label>
+
+<?php 
+$categories=all("categorie");
+?>
+<select name="categorie_id" id="categorie_id" class="form-control">
+<?php  while($c=mysqli_fetch_assoc($categories)) {?>
+<option value="<?=$c['id']?>"  
+<?php if($c['id']==$produit['categorie_id'])  echo "selected"; ?>
+
+ > 
+<?=$c['nom']?>
+</option>
+<?php } ?>
+</select>
+categorie_id de ce produit : <?=$produit['categorie_id']?>
+
         </div>
 <button class="btn btn-primary btn-sm">Valider</button>
 
