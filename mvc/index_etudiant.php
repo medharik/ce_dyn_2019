@@ -1,6 +1,6 @@
 <?php 
 require("modeles.php");
-$classes=all("classe");
+$etudiants=all("etudiant");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@ $classes=all("classe");
     <div class="col-md-3"> <?php include("_aside.php");?></div>
     <div class="col-md-9">
     <div class="titre text-center text-primary">
-Liste des classes :
+Liste des etudiants :
     </div>
     <div class="contenu">
  
@@ -28,17 +28,27 @@ Liste des classes :
 <table class="table table-striped">
     <tr>
     <th>id</th>
-    <th>Nom</th>
+    <th>Nom prenom</th>
+    <th>Photo</th>
+    <th>classe</th>
     <th>action</th>
     </tr>
-    <?php foreach($classes as $c) {?>
+    <?php foreach($etudiants as $c) {?>
         <tr>
         <td><?=$c['id']?></td>
-        <td><?=$c['nom']?></td>
+        <td><?=$c['nomprenom']?></td>
+        <td><img src="<?=$c['chemin']?>" width="150" class="img-thumbnail"></td>
+        <?php 
+        $classe=find("classe",$c['classe_id'])
+        ?>
+        <td><?=$classe['nom']?></td>
+
+
+
         <td>
-        <a href="" class="btn btn-danger">S</a>
-        <a href="" class="btn btn-warning">M</a>
-        <a href="" class="btn btn-info">C</a></td>
+        <a href="controller.php?t=etudiant&a=delete&id=<?=$c['id']?>" class="btn btn-danger">S</a>
+        <a href="edit_etudiant.php?id=<?=$c['id']?>" class="btn btn-warning">M</a>
+        <a href="show_etudiant.php?id=<?=$c['id']?>" class="btn btn-info">C</a></td>
         </tr>
 
     <?php } ?>

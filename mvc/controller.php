@@ -6,7 +6,6 @@ extract($_GET);//$t,$a (lien)
 if($t=="classe"){
     if($a=="store"){
         ajouter_classe($nom);
-        header("location:index_classe.php");
     }
     if($a=="update"){
         modifier_classe($nom,$id);
@@ -14,17 +13,46 @@ if($t=="classe"){
     if($a=="delete"){
         supprimer("classe",$id);
     }
+    header("location:index_classe.php");
+
 
 }
 if($t=="etudiant"){
     if($a=="store"){
-        ajouter_etudiant($nom);
+        $chemin=uploader($_FILES['chemin']);
+        ajouter_etudiant($nomprenom,$chemin,$classe_id);
     }
     if($a=="update"){
-        modifier_etudiant($nom,$id);
+        modifier_etudiant($nomprenom,$chemin,$classe_id,$id);
     }
+    if($a=="delete"){
+        supprimer("etudiant",$id);
+    }
+    header("location:index_etudiant.php");
+
 
 }
+if($t=="absence"){
+    if($a=="store"){
+        // var_dump($etudiant_id);
+        // die();
+foreach ($etudiant_id as $id) {
+  
+           ajouter_absence($date_absence,$nombreHeure,$id);
+         
+} 
+    }
+    if($a=="update"){
+        modifier_etudiant($nomprenom,$chemin,$classe_id,$id);
+    }
+    if($a=="delete"){
+        supprimer("etudiant",$id);
+    }
+    header("location:index_etudiant.php");
+
+
+}
+
 
 
 ?>

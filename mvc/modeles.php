@@ -21,7 +21,10 @@
 
 //connexion 
 function connecter_db(){
-    $link = new PDO('mysql:host=localhost;dbname=db2020revision', 'root', ''); 
+    $options=[
+        PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
+    ];
+    $link = new PDO('mysql:host=localhost;dbname=db2020revision', 'root', '',$options); 
 return $link;
 }
 //classe : 
@@ -50,6 +53,20 @@ $rp->execute([$nomprenom,$chemin,$classe_id,$id]);
 }
 
 //fin etudiant 
+//absence : 
+function ajouter_absence($date_absence,$nombreHeure,$etudiant_id){
+    try{
+        
+        $link=connecter_db();
+        $rp=$link->prepare("insert into absence(date_absence,nombreHeure,etudiant_id)  values(?,?,?)");
+        $rp->execute([$date_absence,$nombreHeure,$etudiant_id]);
+    }catch(PDOException $e){
+
+        die($e->getMessage());
+    }
+}
+
+//fin absence 
 
 // code commun
 
