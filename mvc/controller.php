@@ -6,6 +6,7 @@ extract($_GET);//$t,$a (lien)
 if($t=="classe"){
     if($a=="store"){
         ajouter_classe($nom);
+        die("ajout ok");
     }
     if($a=="update"){
         modifier_classe($nom,$id);

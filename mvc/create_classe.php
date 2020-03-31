@@ -26,14 +26,14 @@ $classes=all("classe");
     <div class="contenu">
 <div class="row">
     <div class="col-md-6 mx-auto">
-
+<div class="alert alert-info"></div>
      
 <form action="controller.php?t=classe&a=store" method="post">
 <div class="form-group">
 Nom : <input type="text" name="nom" id="nom" class="form-control">
 
 </div>
-<button class="btn btn-primary">Valider</button>
+<button type="submit" class="btn btn-primary" id="b_add">Valider</button>
 </form>
     </div>
 </div>
@@ -50,6 +50,38 @@ Nom : <input type="text" name="nom" id="nom" class="form-control">
     
     
     <?php include("_js.php");?>
+    <script>
+      
+$(document).ready(function(){
+    $('.alert-info').hide();
+});
+
+    $(document).on('click','#b_add',function(event){
+        event.preventDefault();
+        $.ajax({
+url: "controller.php?t=classe&a=store",
+method:'POST',
+data: {'nom':$('#nom').val()}
+ 
+})
+.done(function(data){
+$('.alert-info').show().html(data);
+})
+
+.fail(function(error){
+console.log('erreur',error)
+})
+
+
+.always(function(){
+console.log('fin ....');
+
+});
+
+    });
+    
+    </script>
+
 </body>
 </html>
      

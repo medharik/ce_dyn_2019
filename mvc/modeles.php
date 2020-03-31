@@ -77,7 +77,7 @@ function supprimer($table,$id){
 }
 function all($table){
     $link=connecter_db();
-    $rp=$link->prepare("select * from $table");
+    $rp=$link->prepare("select * from $table order by id desc");
     $rp->execute();
   $resultat=  $rp->fetchAll();
   return $resultat;
