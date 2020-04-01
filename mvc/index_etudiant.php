@@ -1,5 +1,7 @@
 <?php 
 require("modeles.php");
+require("config.php");
+
 $etudiants=all("etudiant");
 ?>
 <!DOCTYPE html>
@@ -31,6 +33,8 @@ Liste des etudiants :
     <th>Nom prenom</th>
     <th>Photo</th>
     <th>classe</th>
+    <th>Cumul. D'absence</th>
+    <th>Note de discipline</th>
     <th>action</th>
     </tr>
     <?php foreach($etudiants as $c) {?>
@@ -43,7 +47,14 @@ Liste des etudiants :
         ?>
         <td><?=$classe['nom']?></td>
 
-
+<td><?php
+              $res=etudiant_cumul_absence($c['id']);
+             echo $res['cumul_absence'];
+             
+             ?></td>
+             <td>
+         <?=    20-($res['cumul_absence']*TAUX )   ?>
+             </td>
 
         <td>
         <a href="controller.php?t=etudiant&a=delete&id=<?=$c['id']?>" class="btn btn-danger">S</a>

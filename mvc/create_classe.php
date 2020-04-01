@@ -1,4 +1,3 @@
-
 <?php 
 require("modeles.php");
 $classes=all("classe");
@@ -9,12 +8,9 @@ $classes=all("classe");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <?php include("_css.php");?>
-
 </head>
 <body>
-    
     <?php include("_menu.php");?>
-     
     <div class="main">
      <div class="row">
     <div class="col-md-3"> <?php include("_aside.php");?></div>
@@ -62,26 +58,18 @@ $(document).ready(function(){
 url: "controller.php?t=classe&a=store",
 method:'POST',
 data: {'nom':$('#nom').val()}
- 
 })
 .done(function(data){
 $('.alert-info').show().html(data);
 })
-
 .fail(function(error){
 console.log('erreur',error)
 })
-
-
 .always(function(){
 console.log('fin ....');
-
 });
-
     });
-    
     </script>
-
 </body>
 </html>
      

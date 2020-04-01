@@ -49,7 +49,7 @@ foreach ($etudiant_id as $id) {
     if($a=="delete"){
         supprimer("etudiant",$id);
     }
-    header("location:index_etudiant.php");
+    header("location:index_absence.php");
 
 
 }

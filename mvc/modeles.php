@@ -96,6 +96,21 @@ function findBy($table,$condition){
   $resultat=  $rp->fetch();
   return $resultat;
 }
+
+// stats
+function etudiant_cumul_absence($etudiant_id){
+    $link=connecter_db();
+    $rp=$link->prepare("select sum(nombreHeure) as cumul_absence from absence 
+   where  etudiant_id=? 
+    
+    ");
+    $rp->execute([$etudiant_id]);
+  $resultat=  $rp->fetch();
+  return $resultat;
+}
+
+
+// fin stats 
 //exemple : findBy("etudiant","classe_id=1") : liste des etudiant ayant classe_id=1
 
 // fin code commun
