@@ -111,6 +111,18 @@ function etudiant_cumul_absence($etudiant_id){
 
 
 // fin stats 
+
+// recherche 
+function rechercher_etudiant($mot_cle){
+    $link=connecter_db();
+    // select * from etudiant where nomprenom like '%ali%'
+    $rp=$link->prepare("select * from etudiant where nomprenom like ? order by id desc");
+    $rp->execute(["%$mot_cle%"]);
+  $resultat=  $rp->fetchAll();
+  return $resultat;
+}
+
+// fin de recherche 
 //exemple : findBy("etudiant","classe_id=1") : liste des etudiant ayant classe_id=1
 
 // fin code commun

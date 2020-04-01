@@ -2,7 +2,12 @@
 require("modeles.php");
 require("config.php");
 
-$etudiants=all("etudiant");
+if(isset($_GET['mot_cle'])){
+    $etudiants=   rechercher_etudiant($_GET['mot_cle']);
+}else{
+    $etudiants=all("etudiant");
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +28,12 @@ $etudiants=all("etudiant");
     <div class="col-md-9">
     <div class="titre text-center text-primary">
 Liste des etudiants :
+    </div>
+    <div class="alert">
+    <form action="index_etudiant.php" method="get">
+    Nom :<input type="text" name="mot_cle"> 
+    <button class="btn btn-sm btn-primary">Rechercher</button>
+    </form>
     </div>
     <div class="contenu">
  
