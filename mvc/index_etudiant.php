@@ -3,11 +3,16 @@ require("modeles.php");
 require("config.php");
 
 if(isset($_GET['mot_cle'])){
-    $etudiants=   rechercher_etudiant($_GET['mot_cle']);
+    $etudiants=   rechercher_etudiant($_GET['mot_cle'],$_GET['classe']);
 }else{
     $etudiants=all("etudiant");
 
+
 }
+
+$classes=all("classe");
+// var_dump($classes);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,10 +35,28 @@ if(isset($_GET['mot_cle'])){
 Liste des etudiants :
     </div>
     <div class="alert">
+
     <form action="index_etudiant.php" method="get">
     Nom :<input type="text" name="mot_cle"> 
+
+   <label>Classe : </label> <select name="classe" id="classe">
+    <option value="" selected>...</option>
+<?php  foreach($classes as $c ){?>
+    <option value="<?=$c['id']?>"><?=$c['nom']?></option>
+<?php } ?>
+    
+    </select>
     <button class="btn btn-sm btn-primary">Rechercher</button>
     </form>
+     
+<?php if(isset($_GET['classe']) && !empty($_GET['classe'])) {?>
+    <div class="alert alert-info">
+    Liste des etudiants de classe : <?php 
+   $cl= find("classe",$_GET['classe']);
+    echo $cl['nom'];
+    ?>
+    </div>
+<?php } ?>
     </div>
     <div class="contenu">
  

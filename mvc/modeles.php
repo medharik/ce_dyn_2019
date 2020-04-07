@@ -22,7 +22,8 @@
 //connexion 
 function connecter_db(){
     $options=[
-        PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION
+        PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ];
     $link = new PDO('mysql:host=localhost;dbname=db2020revision', 'root', '',$options); 
 return $link;
@@ -113,11 +114,17 @@ function etudiant_cumul_absence($etudiant_id){
 // fin stats 
 
 // recherche 
-function rechercher_etudiant($mot_cle){
+function rechercher_etudiant($mot_cle,$classe_id=""){
     $link=connecter_db();
     // select * from etudiant where nomprenom like '%ali%'
-    $rp=$link->prepare("select * from etudiant where nomprenom like ? order by id desc");
-    $rp->execute(["%$mot_cle%"]);
+    if(!empty($classe_id)){
+
+        $rp=$link->prepare("select * from etudiant where nomprenom like ? and classe_id =? order by id desc");
+        $rp->execute(["%$mot_cle%",$classe_id]);
+    }else{
+        $rp=$link->prepare("select * from etudiant where nomprenom like ?  order by id desc");
+        $rp->execute(["%$mot_cle%"]);   
+    }
   $resultat=  $rp->fetchAll();
   return $resultat;
 }
