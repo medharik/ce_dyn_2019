@@ -54,6 +54,7 @@ Liste des etudiants :
     Liste des etudiants de classe : <?php 
    $cl= find("classe",$_GET['classe']);
     echo $cl['nom'];
+    //https://web.microsoftstream.com/video/81c4e41a-3703-4230-8014-2e82e5e364bb
     ?>
     </div>
 <?php } ?>
