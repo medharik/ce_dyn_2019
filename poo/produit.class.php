@@ -21,13 +21,23 @@ Appartement a2;
 Clio4 cl1;
 Clio4 cl2;
 */
-Etudiant($nom,$age+afficher);
+// Etudiant($nom,$age+afficher);
 class Produit{
     // attributs
 public $libelle=null;
 public $prix=0;
 public $qte=0;
 public $marque;
+//constructeur :  une methode permettant d'initialiser les attributs lors de 
+// construction d'un objet d'une classe
+//$dell=new Produit("hp dv 6",5000,0,"HP");
+
+function __construct($lib,$prix,$qte=0,$marque="Inconnu"){
+$this->libelle=$lib;
+$this->prix=$prix;
+$this->qte=$qte;
+$this->marque=$marque;
+}
 // les fonctions
 function afficher(){
 echo '<hr>'.$this->libelle.' coute '.$this->prix.', de marque '.$this->marque.'<br>';
